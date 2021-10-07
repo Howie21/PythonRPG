@@ -33,6 +33,23 @@ Cerberus = {
     'Attacks': ['Bite', 'Swipe', 'Chew'],
     'Dodge': 10
 }
+def heal_player():
+    if Hercules['Level'] == 1:
+        Hercules['Health'] = 100
+    elif Hercules['Level'] == 5:
+        Hercules['Health'] = 200
+    elif Hercules['Level'] == 10:
+        Hercules['Health'] = 300
+
+def level_up():
+    new_health = Hercules['Health'] + 100
+    new_attack_power = Hercules['Attack_Power'] + 10
+    new_dodge = Hercules['Dodge'] + 5
+    Hercules['Health'] = new_health
+    Hercules['Attack_Power'] = new_attack_power
+    Hercules['Dodge'] = new_dodge
+    if Hercules['Level'] == 1:
+
 
 def attack(string, monster):
     user_attack = string
@@ -68,4 +85,25 @@ def attack(string, monster):
         print()
 
 
+def monster_attack(monster):
+    name = monster['Name']
+    monster_hit = random.randrange(0, monster['Attack_Power'])
+    user_dodge = random.randrange(0, Hercules['Dodge'])
+    if monster_hit > user_dodge:
+        monster_attacks_player = monster['Attacks'][random.randrange(0, len(monster['Attacks']))]
+        damage_to_player = monster['Attack_Power'] * 2
+        print()
+        print(f'{name} hit you for {damage_to_player} using {monster_attacks_player}')
+        print()
+        new_player_hp = int(Hercules['Health']) - int(damage_to_player)
+        if Hercules['Health'] > 0:
+            print()
+            print(f'Be careful! You have {new_player_hp} Health left')
+            print()
+        elif Hercules['Health'] <= 0:
+            print()
+            print(f'The {name} knocked you out. You have {new_player_hp} health left!')
+    else:
+        print()
+        print(f"You successfully doged the {name}'s attack")
 
