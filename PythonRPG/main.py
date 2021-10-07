@@ -1,4 +1,6 @@
 import random
+
+
 Hercules = {
     'Level': 1,
     'Name': 'Hercules',
@@ -7,6 +9,7 @@ Hercules = {
     'Attacks': ['punch', 'stab', 'slice'],
     'Dodge': 5
 }
+
 Lion = {
     'Name': 'The Nemean Lion',
     'Health': 100,
@@ -14,6 +17,7 @@ Lion = {
     'Attacks': ['bite', 'claw', 'pounce'],
     'Dodge': 5
 }
+
 Hydra = {
     'Name': 'The Nine Headed Lernaean Hydra',
     'Health': 250,
@@ -21,6 +25,7 @@ Hydra = {
     'Attacks': ['bite', 'claw', 'multi attack'],
     'Dodge': 10
 }
+
 Cerberus = {
     'Name': 'Cerberus',
     'Health': 350,
