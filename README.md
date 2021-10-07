@@ -26,3 +26,27 @@ As a developer, I want my RunGame() function to call my other functions in a log
 
 As a developer, I want all of my functions to have a Single Responsibility. Remember, each function should do just one thing!  -->
 
+#Step 1:
+#Break down process to doable steps
+
+ 1. Define Characters using classes
+ 2. Define user_attack func
+ 3. Define Monster_attack func
+ 4. Define encounter engagement
+ 5. Define Story beginning
+ 6. Define Story End
+ 
+ 
+#Step 2:
+#Recognize Priority of Functions:
+
+#Step 3:
+#Build Functions 
+<!-- With Single responsibilties -->
+<!--Tells story using print-->
+
+#Step 4:
+#Order the Functions in Priority to be called
+
+#Step 5:
+#Build a Run function that calls all other functions in priority
