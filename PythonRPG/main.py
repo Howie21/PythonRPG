@@ -70,10 +70,7 @@ def level_up():
 def the_adventure_begins():
     print('You have reached a 3 way fork in the road? How unexpected! Would you like to go left, straight, or right?')
     print()
-    valid_inputs = ['left', 'straight', 'right']
     user_input = input('Please enter: Left, Straight, or Right').lower()
-    while user_input != valid_inputs[0] or user_input != valid_inputs[1] or user_input != valid_inputs[2]:
-        user_input = input('Please try one of these choices!' + valid_inputs)
     if user_input == 'left':
         print()
         print("As you walk along the path you see mutilated bodies, and gaint prints in the ground that look like lion prints, wonder what it could be?")
@@ -89,6 +86,9 @@ def the_adventure_begins():
         print(f'This path seems oddly gloomy and you sense an evil presence... ')
         print()
         fight(Cerberus)
+    else:
+        print('Please Try again!')
+        the_adventure_begins()
     
 def continue_():
     if Cerberus['Health'] <= 0 and Lion['Health'] <= 0 and Hydra['Health'] <= 0:
@@ -205,7 +205,7 @@ def fight(monster):
     print()
     print(encounter_message_list[random.randrange(0, 1)] + f"{monster}")
     print()
-    while Hercules['Health'] > 0 and monster["Health"] > 0:
+    while int(Hercules['Health']) > 0 and int(monster["Health"]) > 0:
         user_input = input("Choose your Attack!" + Hercules['Attacks']).lower()
         attack(user_input, monster)
         if monster["Health"] <= 0:
@@ -226,4 +226,32 @@ def fight(monster):
             continue_()
 
 
-storyLine.story_begins()
+def story_begins():
+    print()
+    print('Once Long ago, there was a great Hero by the Name of Hercules!')
+    print('The god Zeus approached Hercules at a young age and told him:')
+    print('"Young Child, inside you is a great strength! One day, you will')
+    print(' come to the path of Destiny. There you will find the beginning')
+    print(' to becoming a Legend of the People!" After that Zeus did not')
+    print('again call on Hercules. At the age of 28, Hercules was on a walk')
+    print('and he was already a Hero to the People. So he thought nothing of')
+    print('the sign he found with "Destiny" scratched into it.')
+    print('This is where you come into place, you will take control')
+    print(' of our hero. Make the choices, and slay the enemies!')
+    print()
+    print('What will you do?')
+    the_adventure_begins()
+
+def story_ends():
+    print()
+    print('Congrats Great Hero Hercules!')
+    print('Your name is all over the land!')
+    print('You defeated all foes who challenged you!')
+    print('Along with some of the greatest threats to the land')
+    print('such as Cerberus, Hydra and the Lion Chimera!!')
+    print('Where will your story take you next?')
+    print('')
+    print('Thank you for playing My development of the story of Hercules!')
+    print()
+
+story_begins()
