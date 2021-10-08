@@ -35,6 +35,7 @@ As a developer, I want all of my functions to have a Single Responsibility. Reme
  4. Define encounter engagement
  5. Define Story beginning
  6. Define Story End
+ 7. Define a func to Heal after a battle
  
  
 #Step 2:
@@ -50,3 +51,11 @@ As a developer, I want all of my functions to have a Single Responsibility. Reme
 
 #Step 5:
 #Build a Run function that calls all other functions in priority
+
+#Things I learned:
+ - Using print statements as spaces in the terminal.
+ - Re-Looping a function by calling the function.
+ - Using classes and dictionary's properly 
+ - Breaking functions down to modify a specific value in a dict.
+ - Generating a random value using a range of a value in a key
+ - 
