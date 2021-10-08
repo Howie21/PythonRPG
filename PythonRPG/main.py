@@ -1,4 +1,5 @@
 import random
+import storyLine
 
 
 Hercules = {
@@ -33,6 +34,9 @@ Cerberus = {
     'Attacks': ['Bite', 'Swipe', 'Chew'],
     'Dodge': 10
 }
+
+encounter_message_list = ["You traveled over Mountain tops, through dangerous valleys, and fought the cannon foughter, but now you must fight ", "After a long and treacherous journey, you found ",]
+
 def heal_player():
     if Hercules['Level'] == 1:
         Hercules['Health'] = 100
@@ -40,6 +44,9 @@ def heal_player():
         Hercules['Health'] = 200
     elif Hercules['Level'] == 10:
         Hercules['Health'] = 300
+    elif Hercules['Level'] == 15:
+        Hercules['Health'] = 350
+
 
 def level_up():
     new_health = Hercules['Health'] + 100
@@ -49,7 +56,93 @@ def level_up():
     Hercules['Attack_Power'] = new_attack_power
     Hercules['Dodge'] = new_dodge
     if Hercules['Level'] == 1:
+        Hercules['Level'] = 5
+    elif Hercules['Level'] == 5:
+        Hercules['Level'] = 10
+    elif Hercules['Level'] == 10:
+        Hercules['Level'] = 15
+    print(f'Congrats hero! You leved up!!')
+    print(f'Your new lever is: ' + Hercules['Level'])
+    print(f'Your new Health max is ' + Hercules['Health'])
+    print(f'Your new Attack Power is ' + Hercules['Attack_Power'])
 
+
+def the_adventure_begins():
+    print('You have reached a 3 way fork in the road? How unexpected! Would you like to go left, straight, or right?')
+    print()
+    valid_inputs = ['left', 'straight', 'right']
+    user_input = input('Please enter: Left, Straight, or Right').lower()
+    while user_input != valid_inputs[0] or user_input != valid_inputs[1] or user_input != valid_inputs[2]:
+        user_input = input('Please try one of these choices!' + valid_inputs)
+    if user_input == 'left':
+        print()
+        print("As you walk along the path you see mutilated bodies, and gaint prints in the ground that look like lion prints, wonder what it could be?")
+        print()
+        fight(Lion)
+    elif user_input == 'straight':
+        print()
+        print(f'You went straight, in the distance you see a massive lake!')
+        print()
+        fight(Hydra)
+    elif user_input == 'right':
+        print()
+        print(f'This path seems oddly gloomy and you sense an evil presence... ')
+        print()
+        fight(Cerberus)
+    
+def continue_():
+    if Cerberus['Health'] <= 0 and Lion['Health'] <= 0 and Hydra['Health'] <= 0:
+        storyLine.story_ends()
+    elif Lion['Health'] > 0 and Hydra['Health'] > 0 and Cerberus['Health'] > 0:
+        the_adventure_begins()
+    elif Lion['Health'] <= 0 and Hydra['Health'] <= 0:
+        print()
+        print('Now there is only one more foe to battle, The Cerberus!! ONWARD!!')
+        print()
+        fight(Cerberus)
+    elif Lion['Health'] <= 0 and Cerberus['Health'] <= 0:
+        print()
+        print('There be only one foe to battle left! The god of the Sea! Hydra!!!')
+        print()
+        fight(Hydra)
+    elif Cerberus['Health'] <= 0 and Hydra['Health'] <= 0:
+        print()
+        print('Against all odds, you tackled the strongest foes alive First, now all that is left is the Lion!')
+        print()
+        fight(Lion)
+    elif Lion['Health'] <= 0 and Hydra['Health'] > 0 and Cerberus['Health'] > 0:
+        print()
+        print(f'Amazing the great Hercules has slain the Lion!!')
+        user_input = input('Where would you like to go next? Straight or Right?: ').lower()
+        if user_input == 'straight':
+            fight(Hydra)
+        elif user_input == 'right':
+            fight(Cerberus)
+        else:
+            print('That was not a valid input, please try again')
+            print()
+            continue_()
+    elif Hydra['Health'] <= 0 and Lion['Health'] > 0 and Cerberus['Health'] > 0:
+        print()
+        print('The mighty Hercules has amazed the people with his risky Victory!')
+        user_input = input('After slaying the Hydra, where would you like to go on the path of Destiny?: Left, or Right? ').lower()
+        if user_input == 'left':
+            fight(Lion)
+        elif user_input == 'right':
+            fight(Cerberus)
+        else:
+            print("That doesn't appear to be a valid answer. Here, try again!")
+            print()
+            continue_()
+    elif Cerberus['Health'] <= 0 and Lion['Health'] > 0 and Hydra['Health'] > 0:
+        print()
+        print('OH MY GOODNESS! The people cheer Hercules all around the land!!! Who would have guessed he would first defeat the Cerberus!')
+        user_input = input(f'Where would this great hero like to go next on the Path of Destiny!: Left or Straight? ').lower()
+        if user_input == 'left':
+            fight(Lion)
+        elif user_input == 'straight':
+            fight(Hydra)
+        
 
 def attack(string, monster):
     user_attack = string
@@ -107,3 +200,27 @@ def monster_attack(monster):
         print()
         print(f"You successfully doged the {name}'s attack")
 
+def fight(monster):
+    monster = monster['Name']
+    print()
+    print(encounter_message_list[random.randrange(0, 1)] + f"{monster}")
+    print()
+    while Hercules['Health'] > 0 and monster["Health"] > 0:
+        user_input = input("Choose your Attack!" + Hercules['Attacks']).lower()
+        attack(user_input, monster)
+        if monster["Health"] <= 0:
+            print()
+            print(f'{monster} has been defeated carry on with your quest!')
+            level_up()
+            print()
+            heal_player()
+            continue_()
+        print(f'{monster} is preparing to attack')
+        monster_attack(monster)
+        if Hercules['Health'] <= 0:
+            print()
+            print(f'THE MIGHTY HERCULES WAS DEFEATED BY {monster}')
+            print()
+            print(f'You recover at your camp. Prepare for the next battle')
+            heal_player()
+            continue_()
