@@ -62,9 +62,9 @@ def level_up():
     elif Hercules['Level'] == 10:
         Hercules['Level'] = 15
     print(f'Congrats hero! You leved up!!')
-    print(f'Your new lever is: ' + Hercules['Level'])
-    print(f'Your new Health max is ' + Hercules['Health'])
-    print(f'Your new Attack Power is ' + Hercules['Attack_Power'])
+    print(f'Your new level is: ' + str(Hercules['Level']))
+    print(f'Your new Health max is ' + str(Hercules['Health']))
+    print(f'Your new Attack Power is ' + str(Hercules['Attack_Power']))
 
 
 def the_adventure_begins():
@@ -201,25 +201,25 @@ def monster_attack(monster):
         print(f"You successfully doged the {name}'s attack")
 
 def fight(monster):
-    monster = monster['Name']
+    name = monster['Name']
     print()
-    print(encounter_message_list[random.randrange(0, 1)] + f"{monster}")
-    print()
-    while int(Hercules['Health']) > 0 and int(monster["Health"]) > 0:
-        user_input = input("Choose your Attack!" + Hercules['Attacks']).lower()
+    print(encounter_message_list[random.randrange(0, 1)] + f"{name}")
+    print(Hercules['Health'])
+    while Hercules['Health'] > 0 and monster["Health"] > 0:
+        user_input = input("Choose your Attack!" + str(Hercules['Attacks'])).lower()
         attack(user_input, monster)
         if monster["Health"] <= 0:
             print()
-            print(f'{monster} has been defeated carry on with your quest!')
+            print(f'{name} has been defeated carry on with your quest!')
             level_up()
             print()
             heal_player()
             continue_()
-        print(f'{monster} is preparing to attack')
+        print(f'{name} is preparing to attack')
         monster_attack(monster)
         if Hercules['Health'] <= 0:
             print()
-            print(f'THE MIGHTY HERCULES WAS DEFEATED BY {monster}')
+            print(f'THE MIGHTY HERCULES WAS DEFEATED BY {name}')
             print()
             print(f'You recover at your camp. Prepare for the next battle')
             heal_player()
