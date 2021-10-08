@@ -1,5 +1,3 @@
-import main
-
 
 def story_begins():
     print()
@@ -15,7 +13,7 @@ def story_begins():
     print(' of our hero. Make the choices, and slay the enemies!')
     print()
     print('What will you do?')
-    main.the_adventure_begins()
+   
 
 def story_ends():
     print()
