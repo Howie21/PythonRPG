@@ -224,3 +224,6 @@ def fight(monster):
             print(f'You recover at your camp. Prepare for the next battle')
             heal_player()
             continue_()
+
+
+storyLine.story_begins()
