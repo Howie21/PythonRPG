@@ -92,7 +92,7 @@ def the_adventure_begins():
     
 def continue_():
     if Cerberus['Health'] <= 0 and Lion['Health'] <= 0 and Hydra['Health'] <= 0:
-        storyLine.story_ends()
+        story_ends()
     elif Lion['Health'] > 0 and Hydra['Health'] > 0 and Cerberus['Health'] > 0:
         the_adventure_begins()
     elif Lion['Health'] <= 0 and Hydra['Health'] <= 0:
